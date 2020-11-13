@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .a{
+            background-color: red;
+        }
+        .b{
+            border: 5px solid;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        {{msg}}
+        {{count+1}}
+        {{isOK?"ok":"no"}}
+        {{msg1}}
+        <div v-html="msg1"></div>
+        <h2 :class="classA">CSDN</h2>
+        <h2 :class="{'a':isA,'b':isB}">CSDN</h2>
+        <hr>
+        <div v-if="isLogin">你好</div>
+        <div v-else>请登录</div>
+
+        <div v-if='type===1'>A</div>
+        <div v-else-if='type===2'>B</div>
+        <div v-else>C</div>
+
+        <div v-show:isShow>你好呀</div>
+        <hr>
+
+        <h2>{{count}}</h2>
+        <button v-on:click='add($event)'>click</button>
+
+        <a href="https://www.baidu.com" @click.prevent=fn()>百度</a>
+    </div>
+
+
+<script src="vue.js"></script>
+
+<script>
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            msg:"你好 Vue",
+            msg1:"<span>我是谁</span>",
+            count:1,
+            isOK:true,
+            classA:"a",
+            isA:false,
+            isB:true,
+            isLogin:false,
+            type:55,
+            isShow:true,
+            count:0
+        },
+        methods:{
+            add(e){
+                console.log(e.target);
+                this.count++
+            },
+            fn(){
+                console.log("点击跳转");
+            }
+        }
+    })
+
+    
+    console.log(vm.msg);
+    console.log(vm.$el);
+    console.log(vm.$data);
+
+
+</script>
+</body>
+</html>
